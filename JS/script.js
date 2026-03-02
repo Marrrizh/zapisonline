@@ -1,3 +1,4 @@
+const categories = [];
 
 const addCategoryBtn = document.getElementById('add-category');
 
@@ -7,3 +8,4 @@ addCategoryBtn.addEventListener('click', function() {
   // Убираем скрытие
   serviceBlock.hidden = false;
 });
+
