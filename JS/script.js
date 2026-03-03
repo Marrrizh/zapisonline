@@ -1,11 +1,30 @@
 const categories = [];
 
 const addCategoryBtn = document.getElementById('add-category');
+const categoryInput = document.getElementById('category-input');
+
 
 addCategoryBtn.addEventListener('click', function() {
-  // Находим блок услуг
+
   const serviceBlock = document.querySelector('.service');
-  // Убираем скрытие
+  const categoryName = categoryInput.value;
+  if (categoryName.trim() === '') {
+    alert('Введите название категории');
+   
+};
+
+
+const newCategory = {
+  id: Date.now(),    
+  name: categoryName, 
+  services: [] 
+};
+
+categories.push(newCategory);
+
+categoryInput.value = '';
+
+console.log('Текущие категории:', categories);
+
   serviceBlock.hidden = false;
 });
-
