@@ -6,12 +6,11 @@ const categoryInput = document.getElementById('category-input');
 
 addCategoryBtn.addEventListener('click', function() {
 
-  const serviceBlock = document.querySelector('.service');
   const categoryName = categoryInput.value;
   if (categoryName.trim() === '') {
     alert('Введите название категории');
    
-};
+}
 
 
 const newCategory = {
@@ -26,5 +25,4 @@ categoryInput.value = '';
 
 console.log('Текущие категории:', categories);
 
-  serviceBlock.hidden = false;
 });
