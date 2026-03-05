@@ -9,7 +9,7 @@ addCategoryBtn.addEventListener('click', function() {
   const categoryName = categoryInput.value;
   if (categoryName.trim() === '') {
     alert('Введите название категории');
-   
+   return;
 }
 
 
