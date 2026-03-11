@@ -3,6 +3,23 @@ const categories = [];
 const addCategoryBtn = document.getElementById('add-category');
 const categoryInput = document.getElementById('category-input');
 
+function updateServicesList(category, listElement) {
+  listElement.innerHTML = ''; // очищаем
+  
+  for (let i = 0; i < category.services.length; i++) {
+    const service = category.services[i];
+    
+    const serviceItem = document.createElement('div');
+    serviceItem.className = 'service-item';
+    serviceItem.innerHTML = `
+      ${service.name} — ${service.price} руб. 
+      <span class="duration">(${service.duration} мин)</span>
+    `;
+    
+    listElement.appendChild(serviceItem);
+  }
+}
+
 function renderCategories() {
   const container = document.getElementById('categories-container');
   container.innerHTML = ''; 
@@ -48,6 +65,38 @@ function renderCategories() {
     addServiceBtn.textContent = 'Добавить услугу';
     addServiceBtn.className = 'add-service';
     
+addServiceBtn.addEventListener('click', function() {
+  // Получаем значения из полей
+  const name = serviceNameInput.value;
+  const price = Number(servicePriceInput.value);
+  const duration = Number(serviceDurationInput.value);
+  
+  // Проверяем, что поля заполнены
+  if (name.trim() === '' || price <= 0 || duration <= 0) {
+    alert('Заполните все поля');
+    return;
+  }
+  
+  // Создаем объект услуги
+  const newService = {
+    id: Date.now() + Math.random(), // уникальный id
+    name: name,
+    price: price,
+    duration: duration
+  };
+  
+  // Добавляем услугу в массив services текущей категории
+  category.services.push(newService);
+  
+  // Очищаем поля
+  serviceNameInput.value = '';
+  servicePriceInput.value = '';
+  serviceDurationInput.value = 30; // сбрасываем на значение по умолчанию
+  
+  // Обновляем список услуг
+  updateServicesList(category, servicesList);
+});
+
     // Собираем форму
     serviceForm.appendChild(serviceNameInput);
     serviceForm.appendChild(servicePriceInput);
